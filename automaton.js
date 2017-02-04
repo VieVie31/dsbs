@@ -63,7 +63,7 @@ function GState(name, is_initial=false, is_final=false) {
 	this.state = new State(name, is_initial, is_final);
 
 	//create the state on the html page...
-	$("body").append("<div id='" + name + "' class='state " + (is_initial ? "initial" : '') + " " + (is_final ? "final" : '') + "'><span>" + name + "</span><div class='loop' style='display:none;'>&#8634;<sup></sup></div></div>");
+	$("body").append("<div id='" + name + "' class='state " + (is_initial ? "initial" : '') + " " + (is_final ? "final" : '') + "' style='position:absolute;top:50%;left:50%;'><span>" + name + "</span><div class='loop' style='display:none;'>&#8634;<sup></sup></div></div>");
 
 	//refresh the draggable rule : all states are draggable... and the lines should change at the same time
 	$(".state").draggable({cursor: 'move'});
@@ -110,7 +110,7 @@ function GFSM() {
 
 	this.fsm = new (Function.prototype.bind.apply(FSM, m));
 	
-	
+
 	this.update_arrows = function() {
 		/*
 		var states_names = [];
