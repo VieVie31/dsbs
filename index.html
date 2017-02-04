@@ -15,25 +15,6 @@
 	<h1 title="Monte-Haut Descend-Bas">Finite State Machine</h1>
 </header>
 
-<!--
-<div class="state final initial">1</div>
-<div class="state">
-	<span>2</span>
-
-	<div class="loop" style="display:block;">
-		&#8634;
-		<sup>a</sup>
-	</div>
-</div>
--->
-
-<!-- 
-<div class="arrow" from="0">
-	<sub>&#8592;b</sub>
-	<sup>&#8594;a</sup>
-</div>
--->
-
 <div id="toolbox">
 	<h2>ToolBox</h2>
 
@@ -53,9 +34,10 @@
 		<summary>Create new Transition</summary>
 
 		<fieldset>
-			<input type="text" placeholder="from state name...">
-			<input type="text" placeholder="to state name...">
-			<button>Add Transition</button></br>
+			<input type="text" id="char" placeholder="transition character..."></br>
+			<input type="text" id="from" placeholder="from state name..."></br>
+			<input type="text" id="to" placeholder="to state name...">
+			<button onclick="create_transition();">Add Transition</button></br>
 		</fieldset>
 	</details>
 
@@ -88,6 +70,7 @@ $(function() {
 	$(".state").draggable();
 });
 
+
 var states_list = [];
 
 function create_new_state() {
@@ -99,7 +82,52 @@ function create_new_state() {
 	states_list.push(new GState('' + state_name, $("#is_initial").is(":checked"), $("#is_final").is(":checked")));
 }
 
+function create_transition() {
+	//fing which state must be linked...
+	var from_name = $("#from").val();
+	var to_name = $("#to").val();
 
+	if (from_name == '' || to_name == '') {
+		alert("You must specify the name of the state 'from' and 'to' in the inputbox...");
+		return;
+	}
+
+	//find the corresponding states...
+	var from = null;
+	var to = null;
+
+	for (var i = 0; i < states_list.length; i++) {
+		var gs = states_list[i];
+
+		if (gs.state.name == from_name)
+			from = gs;
+
+		if (gs.state.name == to_name)
+			to = gs;
+	}
+
+	if (from == null) {
+		alert("Impossible to find state : " + from_name + " !! :'(");
+		return;
+	}
+
+	if (to == null) {
+		alert("Impossible to find state : " + to_name + " !! :'(");
+		return;
+	}
+
+	//find the transition's char...
+	var char = $("#char").val();
+	if (char == "" || char == null) {
+		alert("You must specify the transition's char in the inputbox...");
+		return;
+	}
+
+	//create the transition
+	from.add_transition(char, to);
+}
+
+/*
 
 //some tests
 //create GStates
@@ -128,6 +156,7 @@ $(".state").click(function() {
 
 //ameke the automaton auto recreate lines when states moved...
 //setInterval(function() {automaton.update_arrows(); }, 2000);
+ */
 
 </script>
 </body>
