@@ -37,7 +37,17 @@
 <div id="toolbox">
 	<h2>ToolBox</h2>
 
-	<button onclick="create_new_state();">Add State</button></br>
+	<!-- control to create new states -->
+	<details>
+		<summary>Create new State</summary>
+
+		<fieldset>
+			<input type="checkbox" id="is_initial" name="is_initial" value="is_initial">Is initial</br>
+			<input type="checkbox" id="is_final" name="is_final" value="is_final">Is final</br>
+			<button onclick="create_new_state();">Add State</button></br>
+		</fieldset>
+	</details>
+
 	<button>Add Transition</button></br>
 	<button>Save as FSM</button></br>
 	</br>
@@ -62,7 +72,7 @@ function create_new_state() {
 	if (state_name == null)
 		state_name = '' + states_list.length;
 
-	console.log(state_name);
+	states_list.push(new GState('' + state_name, $("#is_initial").is(":checked"), $("#is_final").is(":checked")));
 }
 
 
