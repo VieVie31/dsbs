@@ -10,6 +10,7 @@
 	position:absolute;
 	background-color: lightblue;
 	z-index: 99 !important;
+	cursor: move;
 }
 
 .initial {
