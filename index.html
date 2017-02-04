@@ -25,7 +25,7 @@
 		<fieldset>
 			<input type="checkbox" id="is_initial" name="is_initial" value="is_initial">Is initial</br>
 			<input type="checkbox" id="is_final" name="is_final" value="is_final">Is final</br>
-			<button onclick="create_new_state();">Add State</button></br>
+			<button class="fsm_construction" onclick="create_new_state();">Add State</button></br>
 		</fieldset>
 	</details>
 
@@ -37,7 +37,7 @@
 			<input type="text" id="char" placeholder="transition character..."></br>
 			<input type="text" id="from" placeholder="from state name..."></br>
 			<input type="text" id="to" placeholder="to state name...">
-			<button onclick="create_transition();">Add Transition</button></br>
+			<button class="fsm_construction" onclick="create_transition();">Add Transition</button></br>
 		</fieldset>
 	</details>
 
@@ -46,7 +46,7 @@
 		<summary>Make a FSM</summary>
 
 		<fieldset>
-			<button>Save as FSM</button>
+			<button class="fsm_construction" onclick="build_gfsm();">Save as FSM</button>
 		</fieldset>
 	</details>
 
@@ -55,8 +55,8 @@
 		<summary>Animate the FSM</summary>
 
 		<fieldset>
-			<input type="text" placeholder="word to read..." disabled="true"></input></br>
-			<button disabled="true">Read !</button>
+			<input class="fsm_use" type="text" placeholder="word to read..." disabled="true"></input></br>
+			<button class="fsm_use" disabled="true">Read !</button>
 		</fieldset>
 	</details>
 </div>
@@ -71,15 +71,34 @@ $(function() {
 });
 
 
+var gfsm = null;
 var states_list = [];
+var initial_states_count = 0;
 
 function create_new_state() {
+	//asking to the user to name the state
 	var state_name = prompt("Please enter state name", '' + states_list.length);
 
 	if (state_name == null)
 		state_name = '' + states_list.length;
 
+	//warn the user that an initial state allready exist if it's case...
+	if ($("#is_initial").is(":checked")) {
+		if (initial_states_count > 0) {
+			if (!confirm("There is allready an initial state...\nDo you whish to create another (the fsm will not be able to be created...) ?\nIt'll be impossible to remove a state... refresh the page and rebuild the model...")) {
+				return;
+			}
+		}
+
+		initial_states_count ++;
+	}
+
+	//creating a graphical state...
 	states_list.push(new GState('' + state_name, $("#is_initial").is(":checked"), $("#is_final").is(":checked")));
+
+	//reset checkboxes
+	$("#is_initial").attr('checked', false);
+	$("#is_final").attr('checked', false);
 }
 
 function create_transition() {
@@ -125,6 +144,25 @@ function create_transition() {
 
 	//create the transition
 	from.add_transition(char, to);
+}
+
+function build_gfsm() {
+	//build the graphical state machine...
+	var states_list_for_constructor = states_list.slice();
+	states_list_for_constructor.unshift(null);
+
+	try {
+		gfsm = new (Function.prototype.bind.apply(GFSM, states_list_for_constructor));
+	} catch (e) {
+		alert(e);
+		return;
+	}
+
+	//diable the state addition and transition addition and fsm making buttons...
+	$(".fsm_construction").attr("disabled", true);
+
+	//enable the user to use the just build gfsm
+	$(".fsm_use").attr("disabled", false);
 }
 
 /*
