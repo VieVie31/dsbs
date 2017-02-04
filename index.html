@@ -38,7 +38,7 @@
 	<h2>ToolBox</h2>
 
 	<!-- control to create new states -->
-	<details>
+	<details open>
 		<summary>Create new State</summary>
 
 		<fieldset>
@@ -48,11 +48,35 @@
 		</fieldset>
 	</details>
 
-	<button>Add Transition</button></br>
-	<button>Save as FSM</button></br>
-	</br>
-	<input type="text" placeholder="word to read..." disabled="true"></input></br>
-	<button disabled="true">Read !</button></br>
+	<!-- control to create transition between states -->
+	<details>
+		<summary>Create new Transition</summary>
+
+		<fieldset>
+			<input type="text" placeholder="from state name...">
+			<input type="text" placeholder="to state name...">
+			<button>Add Transition</button></br>
+		</fieldset>
+	</details>
+
+	<!-- control to make a state machine -->
+	<details>
+		<summary>Make a FSM</summary>
+
+		<fieldset>
+			<button>Save as FSM</button>
+		</fieldset>
+	</details>
+
+	<!-- control to animate the FSM -->
+	<details>
+		<summary>Animate the FSM</summary>
+
+		<fieldset>
+			<input type="text" placeholder="word to read..." disabled="true"></input></br>
+			<button disabled="true">Read !</button>
+		</fieldset>
+	</details>
 </div>
 
 <script>

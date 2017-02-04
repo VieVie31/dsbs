@@ -78,3 +78,12 @@ main {
 #toolbox button:hover {
 	background-color: #aaa;
 }
+
+#toolbox details summary {
+	cursor: pointer;
+	color: #999;
+	margin-left: 5px;
+	text-align: left;
+}
+
+
