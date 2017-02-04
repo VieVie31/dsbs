@@ -1,0 +1,80 @@
+body {
+	background-color: #eee;
+}
+
+.main-header {
+    position: fixed;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 5rem;
+    color: white;
+    background: #444;
+    line-height: 6rem;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: .25s transform;
+    transition: .25s transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    z-index: 1000;
+    text-transform: uppercase;
+    float: left;
+    text-align: center;
+}
+
+.main-header h1 {
+	top: -50px;
+	font-size: 1.4rem;
+}
+
+main {
+	position: fixed;
+	top: 3rem;
+    margin-left: 15vw;
+    padding: 10rem 6rem;
+    background: #EEE;
+}
+
+#toolbox {
+	cursor: move;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	opacity: 0.95;
+	background-color: #515151;
+	margin: 3px;
+	padding: 3px;
+	width: 150px;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+	z-index: 999 !important;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#toolbox h2 {
+	background: #666;
+	text-align: center;
+	font-size: 20px;
+	padding: 1px;
+	margin: 1px;
+}
+
+#toolbox button, #toolbox input {
+	cursor: pointer;
+	margin-top: 2px;
+	width: 100%;
+	height: 30px;
+	border-radius: 3px;
+}
+
+#toolbox input {
+	width: 95%;
+	display: inline-block;
+}
+
+#toolbox button:hover {
+	background-color: #aaa;
+}
