@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DsBs</title>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="automaton.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="automaton.css"/>
+</head>
+<body>
+<h1>DSBS</h1>
+
+<!--
+<div class="state final initial">1</div>
+<div class="state">
+	<span>2</span>
+
+	<div class="loop" style="display:block;">
+		&#8634;
+		<sup>a</sup>
+	</div>
+</div>
+-->
+
+<!-- 
+<div class="arrow" from="0">
+	<sub>&#8592;b</sub>
+	<sup>&#8594;a</sup>
+</div>
+-->
+
+<script>
+$(function() {
+	$(".state").draggable();
+});
+
+//some tests
+//create GStates
+var s1 = new GState('0', is_initial=true, is_final=false);
+var s2 = new GState('1', is_initial=false, is_final=true);
+var s3 = new GState('2', is_initial=false, is_final=false);
+
+//linking them
+s1.add_transition('a', s2);
+s1.add_transition('c', s2);//
+s1.add_transition('d', s2);//
+s1.add_transition('e', s2);//
+s1.add_transition('f', s2);//
+s2.add_transition('a', s2);
+s2.add_transition('c', s2);
+s2.add_transition('b', s1);
+s1.add_transition('b', s3);
+
+//create automaton
+var automaton = new GFSM(s1, s2, s3);
+
+$(".state").click(function() {
+	automaton.update_arrows();
+});
+
+
+//ameke the automaton auto recreate lines when states moved...
+//setInterval(function() {automaton.update_arrows(); }, 2000);
+
+</script>
+</body>
+</html>

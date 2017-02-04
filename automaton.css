@@ -1,0 +1,47 @@
+/* the states */
+.state {
+	font-size:18px;
+	border:solid black 2px;
+	height:50px;
+	width:50px;
+	text-align:center;
+	line-height:50px;
+	border-radius:66%;
+	position:absolute;
+	background-color: lightblue;
+	z-index: 99 !important;
+}
+
+.initial {
+	background-color: lightgreen;
+}
+
+.final {
+	border:double black 5px;
+}
+
+/* the transitions */
+.loop {
+	font-size:38pt;
+	color:grey;
+	position:absolute;
+}
+
+.arrow {
+	position:absolute;
+	font-size:38pt;
+	color:grey;
+}
+
+sub, sup {
+	transform: none;
+    -moz-transform: none;
+    -webkit-transform: none;
+    -o-transform: none;
+
+    transition: transform 1s ease;
+    -moz-transition: -moz-transform 1s ease;
+    -o-transition: -o-transform 1s ease;
+    -ms-transition: -ms-transform 1s ease;
+    -webkit-transition: -webkit-transform 1s ease;
+}
