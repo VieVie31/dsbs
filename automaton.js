@@ -53,8 +53,13 @@ function FSM() {
 	if (c != 1)
 		throw "No initial state... :'("
 
-	this.read = function() {
-		//TODO
+	this.read = function(word) {
+		//split the word by comma beacause eeach 'character' of the word is comma separated...
+		var word = word.split(','); 
+
+		//TODO: do not forget to remove empty strings !!
+
+		//TODO: complete the function... :p
 	}
 }
 
@@ -112,23 +117,7 @@ function GFSM() {
 	
 
 	this.update_arrows = function() {
-		/*
-		var states_names = [];
-		for (var i = 0; i < this.gstates.length; i++)
-			states_names.push(this.gstates[i].state.name);
-
-		for (var i = 0; i < states_names.length; i++) {
-			for (var j = 0; j < states_names.length; j++)
-				if (i != j) //ignore loopings...
-					try {
-						update_arrow_pos(i, j);
-						console.log(i + " " + j);
-					} catch (e) {}
-			console.log(states_names);
-		}
-		*/
 		$(".arrow").each(function() { 
-			//console.log($(this).children().text());
 			update_arrow_pos($(this).attr("from"), $(this).attr("to"));
 		});
 

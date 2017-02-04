@@ -18,7 +18,11 @@
 }
 
 .final {
-	border:double black 5px;
+	border: double black 5px;
+}
+
+.current {
+	background-color: #ffb6c1;
 }
 
 /* the transitions */
