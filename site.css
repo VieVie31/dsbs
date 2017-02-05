@@ -1,3 +1,13 @@
+/**
+ *	GUI for the main website
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 1996):
+ * <orissermaroix@gmail.com> wrote this file. You want with this stuff. 
+ * If we meet some day, and you think this stuff is worth it, 
+ * you can buy me a beer in return. Olivier RISSER-MAROIX
+ * ----------------------------------------------------------------------------
+ */
+
 body {
 	background-color: #eee;
 }
@@ -83,6 +93,23 @@ main {
 	color: #999;
 	margin-left: 5px;
 	text-align: left;
+}
+
+footer{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding-top: 50px;
+	height: 20px;
+	text-align: center;
+}
+
+footer a {
+	text-decoration: none;
+}
+
+footer a tt {
+	color: lightgray;
 }
 
 

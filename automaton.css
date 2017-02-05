@@ -1,3 +1,13 @@
+/**
+ *	Automaton design for FINITE STATE MACHINE
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 1996):
+ * <orissermaroix@gmail.com> wrote this file. You want with this stuff. 
+ * If we meet some day, and you think this stuff is worth it, 
+ * you can buy me a beer in return. Olivier RISSER-MAROIX
+ * ----------------------------------------------------------------------------
+ */
+
 /* the states */
 .state {
 	font-size:18px;

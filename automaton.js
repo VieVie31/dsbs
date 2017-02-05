@@ -1,7 +1,12 @@
-/*
-	Automaton script for FINITE STATE MACHINE
-	Olivier RISSER-MAROIX (c) 2017
-*/
+/**
+ *	Automaton script for FINITE STATE MACHINE
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 1996):
+ * <orissermaroix@gmail.com> wrote this file. You want with this stuff. 
+ * If we meet some day, and you think this stuff is worth it, 
+ * you can buy me a beer in return. Olivier RISSER-MAROIX
+ * ----------------------------------------------------------------------------
+ */
 
 function State(name, is_initial=false, is_final=false) {
 	//set an 'unique' name to the state
