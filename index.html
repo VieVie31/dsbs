@@ -165,6 +165,29 @@ function build_gfsm() {
 	$(".fsm_use").attr("disabled", false);
 }
 
+
+//testing the function of the FSM to read words...
+var s1 = new State('0', is_initial=true, is_final=false);
+var s2 = new State('1', is_initial=false, is_final=true);
+
+s1.add_transition('a', s2);
+s2.add_transition('a', s2);
+s2.add_transition('b', s1);
+
+var automaton = new FSM(s1, s2);
+
+var words = ["a", "a,a,a", "a,a,b,a", "a,a,a,b", "a,b,b,a"]; //char are comma separated...
+for (var i = 0; i < words.length; i++) {
+	console.log(words[i]);
+
+	try {
+		console.log(automaton.read(words[i]));
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+
 /*
 
 //some tests

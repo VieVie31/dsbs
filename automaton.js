@@ -33,6 +33,7 @@ function State(name, is_initial=false, is_final=false) {
 function FSM() {
 	this.states = arguments;
 	this.last_lecture = [];
+	this.initial_state = null;
 
 	var c = 0;
 	for (var i = 0; i < this.states.length; i++) {
@@ -55,11 +56,38 @@ function FSM() {
 
 	this.read = function(word) {
 		//split the word by comma beacause eeach 'character' of the word is comma separated...
-		var word = word.split(','); 
+		var word = word.split(',');
 
-		//TODO: do not forget to remove empty strings !!
+		//remove empty strings !! (no 'epsilon transition')
+		word = word.filter(function(v)  {
+			return v != ""; 
+		});
 
-		//TODO: complete the function... :p
+		//reset the last lecture...
+		this.__last_lecture = [];
+
+		var current = this.initial_state;
+		for (var i = 0; i < word.length; i++) {
+			var c = word[i];
+
+			if (c in current.transition) {
+				this.__last_lecture.push(current);
+				current = current.transition[c][0];
+			} else {
+				var error_message = "No transition for this char : " + c + " !! :'(";
+				this.__last_lecture.push(error_message);
+				throw error_message;
+			}
+		}
+
+		//check if the last state is a valid final state
+		if (!current.is_final) {
+			var error_message = "Last state is not a valid final state !! :'(";
+			this.__last_lecture.push(error_message);
+			throw error_message;
+		}
+
+		return this.__last_lecture.slice();
 	}
 }
 
