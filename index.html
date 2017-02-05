@@ -99,6 +99,11 @@ function create_new_state() {
 	//reset checkboxes
 	$("#is_initial").attr('checked', false);
 	$("#is_final").attr('checked', false);
+
+
+	/************/
+	//make a tmp fsm to allow the user to update lines whan state moved
+	build_tmp_gfsm();
 }
 
 function create_transition() {
@@ -144,6 +149,21 @@ function create_transition() {
 
 	//create the transition
 	from.add_transition(char, to);
+
+	
+	/************/
+	//make a tmp fsm to allow the user to update lines whan state moved
+	build_tmp_gfsm();
+}
+
+function build_tmp_gfsm() {
+	//build the graphical state machine...
+	var states_list_for_constructor = states_list.slice();
+	states_list_for_constructor.unshift(null);
+
+	try {
+		gfsm = new (Function.prototype.bind.apply(GFSM, states_list_for_constructor));
+	} catch (e) {}
 }
 
 function build_gfsm() {
@@ -177,11 +197,15 @@ function gfsm_read() {
 }
 
 
-
-/*
 //ameke the automaton auto recreate lines when states moved...
-//setInterval(function() {automaton.update_arrows(); }, 2000);
- */
+
+setInterval(function() {
+	try {
+		gfsm.update_arrows();  //FIXME : the toolbox is not anymore draggapbe !! :'(
+	} catch (e) {}
+}, 5000);
+
+
 
 </script>
 </body>
