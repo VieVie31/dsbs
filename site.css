@@ -39,10 +39,9 @@ main {
 }
 
 #toolbox {
-	cursor: move;
 	position: absolute;
-	left: 50%;
-	top: 30%;
+	left: 0;
+	top: 3rem;
 	opacity: 0.95;
 	background-color: #515151;
 	margin: 3px;

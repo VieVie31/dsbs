@@ -62,14 +62,6 @@
 </div>
 
 <script>
-$(function() {
-	$("#toolbox").draggable();
-});
-
-$(function() {
-	$(".state").draggable();
-});
-
 
 var gfsm = null;
 var states_list = [];
@@ -163,6 +155,7 @@ function build_tmp_gfsm() {
 
 	try {
 		gfsm = new (Function.prototype.bind.apply(GFSM, states_list_for_constructor));
+		gfsm.update_arrows();
 	} catch (e) {}
 }
 
@@ -183,6 +176,10 @@ function build_gfsm() {
 
 	//enable the user to use the just build gfsm
 	$(".fsm_use").attr("disabled", false);
+
+	//update arrows for the last time and do not made states draggabele again...
+	gfsm.update_arrows();
+	$(".state").draggable("disable");
 }
 
 function gfsm_read() {
@@ -197,15 +194,9 @@ function gfsm_read() {
 }
 
 
-//ameke the automaton auto recreate lines when states moved...
-
-setInterval(function() {
-	try {
-		gfsm.update_arrows();  //FIXME : the toolbox is not anymore draggapbe !! :'(
-	} catch (e) {}
-}, 5000);
-
-
+$(function() {
+	$(".state").draggable();
+});
 
 </script>
 </body>
