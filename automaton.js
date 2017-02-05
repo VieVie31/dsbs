@@ -87,6 +87,9 @@ function FSM() {
 			throw error_message;
 		}
 
+		this.__last_lecture.push(current);
+		this.__last_lecture.push("Word : " + word + " successfully readed  !! :D");
+
 		return this.__last_lecture.slice();
 	}
 }
@@ -156,7 +159,7 @@ function GFSM() {
 			for (var i = 0; i < transform.length; i++)
 				$(this).children()[0].style[transform[i]] = "none";
 
-			$(this).children()[0].style["color"] = "green";
+			//$(this).children()[0].style["color"] = "green";
 			$(this).children()[0].style["transform-origin"] = "initial";
 			$(this).children()[0].style["transition"] = "0";
 		});
@@ -198,6 +201,8 @@ function GFSM() {
 				})(current);
 			}
 		}
+
+		//display the last state...
 
 	}
 }
