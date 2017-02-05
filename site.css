@@ -95,6 +95,16 @@ main {
 	text-align: left;
 }
 
+#output {
+	display: inline-block;
+	height: 100px;
+	width: 95%;
+	max-width: 95%;
+	resize: vertical;
+	color: green;
+	background-color: black;
+}
+
 footer{
 	position: absolute;
 	bottom: 0;

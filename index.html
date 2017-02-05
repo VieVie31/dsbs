@@ -66,7 +66,8 @@
 
 		<fieldset>
 			<input class="fsm_use" type="text" placeholder="word to read (separe each char by a comma ',')..." disabled="true"></input></br>
-			<button class="fsm_use" onclick="gfsm_read();" disabled="true">Read !</button>
+			<button class="fsm_use" onclick="gfsm_read();" disabled="true">Read !</button></br>
+			<textarea id="output" rows="20" disabled="true"></textarea>
 		</fieldset>
 	</details>
 </div>
@@ -198,6 +199,9 @@ function build_gfsm() {
 }
 
 function gfsm_read() {
+	//reset the ouput console
+	$("#output").val('');
+
 	//get the word to read
 	var word = $("input.fsm_use").val();
 

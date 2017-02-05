@@ -179,26 +179,42 @@ function GFSM() {
 			this.fsm.read(word);
 		} catch (e) {}
 
+		var previous_output = $("#output").val();
+		$("#output").val(previous_output + "\ninitial state");
+
+		var splitted_word = word.split(',').filter(function(v)  {
+			return v != ""; 
+		});
+
 		var lecture = this.fsm.__last_lecture.slice();
 
 		for (var i = 0; i < lecture.length; i++) {
 			var current = lecture[i];
 
 			if (current instanceof State) {
-				(function (name) { //horrible hack because setTimeout is evil with variables !!! :p
+				(function (name, j) { //horrible hack because setTimeout is evil with variables !!! :p
 					setTimeout(
 						function() {
 							//change the current state...
 							$(".current").removeClass("current", {duration: speed / 3}); //remove the previous with a fadeout effect
 							$("#" + name).addClass("current", {duration: speed / 3}); //set the current with a fadein effect
+							
+							try { //in case the user decide to remove the output console...
+								if (splitted_word[j] != null) {
+									var previous_output = $("#output").val();
+									$("#output").val(previous_output + "\nreading : '" + splitted_word[j] + "'");
+								}
+							} catch (e) {}
 						},
 						i * speed
 					);
-				})(current.name);
+				})(current.name, i);
 			} else {
 				(function (text) { //f***ing time out !!!!!
 					setTimeout(
 						function() {
+							var previous_output = $("#output").val();
+							$("#output").val(previous_output + "\n" + text);
 							alert(text); //display the error messate
 						},
 						i * speed
