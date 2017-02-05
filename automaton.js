@@ -161,6 +161,45 @@ function GFSM() {
 			$(this).children()[0].style["transition"] = "0";
 		});
 	}
+
+	this.read = function(word, speed=1000) { 
+		//the word should have his all char separated by a comma...
+		//speed is to control the animation (in millis), after eac quantum of "speed" a state change...
+
+		//get the lecture states of the word
+		try {
+			this.fsm.read(word);
+		} catch (e) {}
+
+		var lecture = this.fsm.__last_lecture.slice();
+
+		for (var i = 0; i < lecture.length; i++) {
+			var current = lecture[i];
+
+			if (current instanceof State) {
+				(function (name) { //horrible hack because setTimeout is evil with variables !!! :p
+					setTimeout(
+						function() {
+							//change the current state...
+							$(".current").removeClass("current", {duration: speed / 3}); //remove the previous with a fadeout effect
+							$("#" + name).addClass("current", {duration: speed / 3}); //set the current with a fadein effect
+						},
+						i * speed
+					);
+				})(current.name);
+			} else {
+				(function (text) { //f***ing time out !!!!!
+					setTimeout(
+						function() {
+							alert(text); //display the error messate
+						},
+						i * speed
+					);
+				})(current);
+			}
+		}
+
+	}
 }
 
 function compute_line_params(div1, div2, thickness=3) {
